@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - Admin Panel</title>
+    <link href="/css/output.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gray-800 text-white">
+            <div class="p-4">
+                <h1 class="text-xl font-bold">Admin Panel</h1>
+            </div>
+            
+            <nav class="mt-8">
+                <a href="/dashboard" class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200">
+                    <i data-feather="home" class="w-5 h-5 mr-3"></i>
+                    Dashboard
+                </a>
+                
+                <a href="/users" class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200">
+                    <i data-feather="users" class="w-5 h-5 mr-3"></i>
+                    Kullanıcılar
+                </a>
+                
+                <a href="/reports" class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200">
+                    <i data-feather="bar-chart-2" class="w-5 h-5 mr-3"></i>
+                    Raporlar
+                </a>
+                
+                <a href="/settings" class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200">
+                    <i data-feather="settings" class="w-5 h-5 mr-3"></i>
+                    Ayarlar
+                </a>
+            </nav>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <header class="bg-white shadow-sm border-b border-gray-200">
+                <div class="flex justify-between items-center px-6 py-4">
+                    <div class="flex items-center">
+                        <h2 class="text-xl font-semibold text-gray-800"><%= title %></h2>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-600">Hoş geldin, <%= user.username %></span>
+                        <a href="/logout" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm transition duration-200">
+                            Çıkış Yap
+                        </a>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Page Content -->
+            <main class="flex-1 p-6">
+                <%- body %>
+            </main>
+        </div>
+    </div>
+    
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

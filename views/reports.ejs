@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raporlar - Admin Panel</title>
+    <link href="/css/output.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gray-800 text-white">
+            <div class="p-4">
+                <h1 class="text-xl font-bold">Admin Panel</h1>
+            </div>
+            
+            <nav class="mt-8">
+                <a href="/dashboard" class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200">
+                    <i data-feather="home" class="w-5 h-5 mr-3"></i>
+                    Dashboard
+                </a>
+                
+                <a href="/users" class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200">
+                    <i data-feather="users" class="w-5 h-5 mr-3"></i>
+                    Kullanıcılar
+                </a>
+                
+                <a href="/reports" class="flex items-center px-4 py-3 bg-gray-700 text-white">
+                    <i data-feather="bar-chart-2" class="w-5 h-5 mr-3"></i>
+                    Raporlar
+                </a>
+                
+                <a href="/settings" class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200">
+                    <i data-feather="settings" class="w-5 h-5 mr-3"></i>
+                    Ayarlar
+                </a>
+            </nav>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <header class="bg-white shadow-sm border-b border-gray-200">
+                <div class="flex justify-between items-center px-6 py-4">
+                    <div class="flex items-center">
+                        <h2 class="text-xl font-semibold text-gray-800">Raporlar</h2>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-600">Hoş geldin, <%= user.username %></span>
+                        <a href="/logout" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm transition duration-200">
+                            Çıkış Yap
+                        </a>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Page Content -->
+            <main class="flex-1 p-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Kullanıcı İstatistikleri -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Kullanıcı İstatistikleri</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Toplam Kullanıcı</span>
+                                <span class="font-semibold text-blue-600">1</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Aktif Kullanıcı</span>
+                                <span class="font-semibold text-green-600">1</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Bu Ay Kayıt</span>
+                                <span class="font-semibold text-purple-600">1</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sistem İstatistikleri -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Sistem İstatistikleri</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Veritabanı Boyutu</span>
+                                <span class="font-semibold text-gray-800">~50 KB</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Sunucu Durumu</span>
+                                <span class="font-semibold text-green-600">Aktif</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Son Güncelleme</span>
+                                <span class="font-semibold text-gray-800">Bugün</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grafik Alanı -->
+                <div class="mt-6 bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Aylık Kullanıcı Aktivitesi</h3>
+                    <div class="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
+                        <div class="text-center text-gray-500">
+                            <i data-feather="bar-chart-2" class="w-12 h-12 mx-auto mb-2"></i>
+                            <p>Grafik verisi burada görüntülenecek</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Rapor İndirme -->
+                <div class="mt-6 bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Rapor İndirme</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <button class="flex items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-200">
+                            <i data-feather="download" class="w-5 h-5 text-blue-600 mr-2"></i>
+                            <span>Kullanıcı Raporu</span>
+                        </button>
+                        <button class="flex items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-200">
+                            <i data-feather="download" class="w-5 h-5 text-green-600 mr-2"></i>
+                            <span>Sistem Raporu</span>
+                        </button>
+                        <button class="flex items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-200">
+                            <i data-feather="download" class="w-5 h-5 text-purple-600 mr-2"></i>
+                            <span>Aktivite Raporu</span>
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
