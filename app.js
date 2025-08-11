@@ -16,15 +16,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Vercel için session store düzeltmesi
 app.use(session({
   secret: process.env.SESSION_SECRET || 'gizli-anahtar-buraya',
   resave: false,
   saveUninitialized: false,
   cookie: { 
-    secure: NODE_ENV === 'production',
+    secure: false, // Vercel'de false olmalı
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000 // 24 saat
-  }
+  },
+  store: new session.MemoryStore() // Vercel'de geçici olarak MemoryStore kullan
 }));
 
 // Flash messages middleware
@@ -36,7 +38,9 @@ app.use((req, res, next) => {
   next();
 });
 
-const db = new sqlite3.Database('./database.sqlite');
+// Vercel için database path düzeltmesi
+const dbPath = process.env.VERCEL ? '/tmp/database.sqlite' : './database.sqlite';
+const db = new sqlite3.Database(dbPath);
 
 db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS users (
